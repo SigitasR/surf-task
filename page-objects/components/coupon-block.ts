@@ -2,16 +2,20 @@ import { expect, Locator, Page } from '@playwright/test';
 
 export default class CouponBlock {
 
+    private readonly couponBlockContainer: Locator;
     private readonly enterCouponButton: Locator;
     private readonly couponInput: Locator;
     private readonly applyCouponButton: Locator;
     private readonly appliedCouponLabel: Locator;
+    private readonly couponErrorLabel: Locator;
 
     constructor(private readonly page: Page) {
-        this.enterCouponButton = this.page.getByTestId('button-enter-coupon');
-        this.couponInput = this.page.getByTestId('input-coupon').locator('input');
-        this.applyCouponButton = this.page.getByTestId('button-apply-coupon');
-        this.appliedCouponLabel = this.page.getByTestId('applied-coupon');
+        this.couponBlockContainer = this.page.getByTestId('coupon-block');
+        this.enterCouponButton = this.couponBlockContainer.getByTestId('button-enter-coupon');
+        this.couponInput = this.couponBlockContainer.getByTestId('input-coupon').locator('input');
+        this.applyCouponButton = this.couponBlockContainer.getByTestId('button-apply-coupon');
+        this.appliedCouponLabel = this.couponBlockContainer.getByTestId('applied-coupon');
+        this.couponErrorLabel = this.couponBlockContainer.getByTestId('coupon-error');
     }
 
     async clickEnterCoupon() {
@@ -28,6 +32,10 @@ export default class CouponBlock {
 
     async expectCouponToBeApplied(coupon: string) {
         await expect(this.appliedCouponLabel).toHaveText(coupon);
+    }
+
+    async expectCouponErrorToBeDisplayed() {
+        await expect(this.couponErrorLabel).toHaveText('Coupon code is invalid.');
     }
 
 }
