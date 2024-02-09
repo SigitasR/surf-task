@@ -4,7 +4,7 @@ Automated test suite using TypeScript + Playwright.
 
 ## Project setup and structure
 
-Project is organized into a couple of directories:
+To run the project you will need working Node.js (at least version 18.19) environment with `npm` package manager. Project is organized into a couple of directories:
 
 `page-objects` - contains page object and components that describe web page elements
 
