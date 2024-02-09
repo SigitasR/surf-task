@@ -2,7 +2,6 @@ import { Page } from '@playwright/test';
 import OrderSummaryBlock from '../components/order-summary-block';
 
 export default class PaymentPage {
-
     readonly orderSummary: OrderSummaryBlock;
 
     constructor(private readonly page: Page) {

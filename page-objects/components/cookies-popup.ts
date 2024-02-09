@@ -1,7 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
 export default class CookiesPopup {
-
     private readonly cookiesPopup: Locator;
     private readonly acceptCookiesButton: Locator;
 
@@ -14,5 +13,4 @@ export default class CookiesPopup {
         await this.page.waitForLoadState('domcontentloaded');
         await this.acceptCookiesButton.click();
     }
-
 }

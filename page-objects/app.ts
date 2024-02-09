@@ -6,7 +6,6 @@ import PaymentPage from './pages/payment-page';
 import CookiesPopup from './components/cookies-popup';
 
 export default class App {
-
     readonly step: StepBlock;
     readonly subscriptionPage: SubscriptionPage;
     readonly additionalProductsPage: AdditionalProductsPage;
@@ -24,5 +23,4 @@ export default class App {
     async open() {
         await this.page.goto('/');
     }
-
 }

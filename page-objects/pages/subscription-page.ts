@@ -3,14 +3,12 @@ import PlanBlock from '../components/plan-block';
 import CouponBlock from '../components/coupon-block';
 
 export default class SubscriptionPage {
-
     readonly plan24months: PlanBlock;
     readonly plan12months: PlanBlock;
     readonly plan1month: PlanBlock;
     readonly couponBlock: CouponBlock;
 
     private readonly continueToCheckoutButton: Locator;
-
 
     constructor(private readonly page: Page) {
         this.plan24months = new PlanBlock(this.page, 'plan-24');
@@ -24,5 +22,4 @@ export default class SubscriptionPage {
     async clickContinueToCheckout() {
         await this.continueToCheckoutButton.click();
     }
-
 }

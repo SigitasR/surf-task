@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
 export default class OrderSummaryBlock {
-
     private readonly orderSummaryContainer: Locator;
     private readonly couponContainer: Locator;
 
@@ -13,5 +12,4 @@ export default class OrderSummaryBlock {
     async expectCouponToBeApplied(coupon: string) {
         await expect(this.couponContainer).toContainText(coupon);
     }
-
 }

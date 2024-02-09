@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
 export default class PlanBlock {
-
     private readonly planContainer: Locator;
     private readonly subscriptionTitle: Locator;
     private readonly priceTag: Locator;
@@ -10,7 +9,10 @@ export default class PlanBlock {
     private readonly billingInitialAmount: Locator;
     private readonly billingRenewalAmount: Locator;
 
-    constructor(private readonly page: Page, private readonly selector: string) {
+    constructor(
+        private readonly page: Page,
+        private readonly selector: string,
+    ) {
         this.planContainer = this.page.getByTestId(this.selector);
         this.subscriptionTitle = this.planContainer.getByTestId('subscription-title');
         this.priceTag = this.planContainer.getByTestId('price-tag');
@@ -20,16 +22,16 @@ export default class PlanBlock {
         this.billingRenewalAmount = this.billingInfoContainer.getByTestId('money').nth(1);
     }
 
-    async selectPlan(){
-        await this.planContainer.click()
+    async selectPlan() {
+        await this.planContainer.click();
     }
 
-    async expectPlanToBeHighlighted(){
-        await expect(this.planContainer).toHaveAttribute('data-selected', 'true')
+    async expectPlanToBeHighlighted() {
+        await expect(this.planContainer).toHaveAttribute('data-selected', 'true');
     }
 
-    async expectPlanContainerToBeVisible(){
-        await expect(this.planContainer).toBeVisible()
+    async expectPlanContainerToBeVisible() {
+        await expect(this.planContainer).toBeVisible();
     }
 
     async expectSubscriptionTitleToBe(title: string) {
@@ -47,6 +49,4 @@ export default class PlanBlock {
     async expectRenewedBillingAmountToBe(amount: number) {
         await expect(this.billingRenewalAmount).toHaveText(amount.toFixed(2));
     }
-
-
 }

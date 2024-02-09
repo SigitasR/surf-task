@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
 export default class CouponBlock {
-
     private readonly couponBlockContainer: Locator;
     private readonly enterCouponButton: Locator;
     private readonly couponInput: Locator;
@@ -37,5 +36,4 @@ export default class CouponBlock {
     async expectCouponErrorToBeDisplayed() {
         await expect(this.couponErrorLabel).toHaveText('Coupon code is invalid.');
     }
-
 }

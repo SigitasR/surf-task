@@ -1,7 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
 export default class UpsellBlock {
-
     private readonly upsellContainer: Locator;
     private readonly continueWithoutBundleButton: Locator;
 
@@ -13,5 +12,4 @@ export default class UpsellBlock {
     async clickContinueWithoutBundle() {
         await this.continueWithoutBundleButton.click();
     }
-
 }
