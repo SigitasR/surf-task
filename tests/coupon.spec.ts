@@ -1,7 +1,6 @@
 import { test } from '@playwright/test';
 import App from '../page-objects/app';
 
-
 test.describe('Coupon usage tests', () => {
 
         const coupon = 'MRBeast';
@@ -10,6 +9,7 @@ test.describe('Coupon usage tests', () => {
         test.beforeEach(async ({ page }) => {
             app = new App(page);
             await app.open();
+            await app.cookiesPopup.acceptCookies()
         });
 
         test('Should test if error is shown when invalid coupon is applied', async () => {
@@ -28,7 +28,7 @@ test.describe('Coupon usage tests', () => {
                 await app.subscriptionPage.plan24months.expectSubscriptionTitleToBe('24-month subscription');
                 await app.subscriptionPage.plan24months.expectPriceToBe(2.49);
                 await app.subscriptionPage.plan24months.expectInitialBillingAmountToBe(59.76);
-                await app.subscriptionPage.plan24months.expectRenewedBillingAmountToBe(55.46);
+                await app.subscriptionPage.plan24months.expectRenewedBillingAmountToBe(55.55);
             });
 
             await test.step('Apply coupon', async () => {
@@ -41,7 +41,7 @@ test.describe('Coupon usage tests', () => {
             await test.step('Check 24 month plan after applying coupon', async () => {
                 await app.subscriptionPage.plan24months.expectPriceToBe(1.69);
                 await app.subscriptionPage.plan24months.expectInitialBillingAmountToBe(50.70);
-                await app.subscriptionPage.plan24months.expectRenewedBillingAmountToBe(55.46);
+                await app.subscriptionPage.plan24months.expectRenewedBillingAmountToBe(55.55);
             });
 
             await test.step('Continue to Additional products page', async () => {

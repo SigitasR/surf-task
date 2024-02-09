@@ -11,13 +11,25 @@ export default class PlanBlock {
     private readonly billingRenewalAmount: Locator;
 
     constructor(private readonly page: Page, private readonly selector: string) {
-        this.planContainer = this.page.getByTestId(selector);
+        this.planContainer = this.page.getByTestId(this.selector);
         this.subscriptionTitle = this.planContainer.getByTestId('subscription-title');
         this.priceTag = this.planContainer.getByTestId('price-tag');
         this.priceTagAmount = this.priceTag.getByTestId('money');
         this.billingInfoContainer = this.planContainer.getByTestId('billing-info');
         this.billingInitialAmount = this.billingInfoContainer.getByTestId('money').first();
         this.billingRenewalAmount = this.billingInfoContainer.getByTestId('money').nth(1);
+    }
+
+    async selectPlan(){
+        await this.planContainer.click()
+    }
+
+    async expectPlanToBeHighlighted(){
+        await expect(this.planContainer).toHaveAttribute('data-selected', 'true')
+    }
+
+    async expectPlanContainerToBeVisible(){
+        await expect(this.planContainer).toBeVisible()
     }
 
     async expectSubscriptionTitleToBe(title: string) {
