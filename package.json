@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run-chrome": "npx playwright test --headed --project chromium",
-    "run-firefox": "npx playwright test --headed --project firefox",
+    "chrome": "npx playwright test --headed --project chromium",
+    "firefox": "npx playwright test --headed --project firefox",
     "report": "npx playwright show-report",
     "format": "prettier --write ."
   },
